@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    					http://www.springframework.org/schema/task
+    					http://www.springframework.org/schema/task/spring-task-4.0.xsd"
+	default-lazy-init="true">
+
+	<task:scheduler id="eSportScheduler" pool-size="50" />
+	<task:scheduled-tasks scheduler="eSportScheduler">
+		<!-- 同步王者荣耀赛事类型 -->
+		<task:scheduled ref="esportsDataService" method="syncMatchType" cron="*/60 * * * * ?" />
+		<!-- 同步王者荣耀开赛时间大于当前时间的赛事 -->
+		<task:scheduled ref="esportsDataService" method="syncMatch" cron="*/60 * * * * ?" />
+		<!-- 同步王者荣耀同步所有玩法类型 -->
+		<task:scheduled ref="esportsDataService" method="syncCompetitionType" cron="*/60 * * * * ?" />
+		<!-- 同步王者荣耀比赛未结束的赛果 -->
+		<task:scheduled ref="esportsDataService" method="syncNotFinishedResults" cron="*/3 * * * * ?" />
+		<!-- 同步王者荣耀2天内已结束赛果数据 -->
+		<task:scheduled ref="esportsDataService" method="syncFinishedResults" cron="*/60 * * * * ?" />
+		<!-- 同步王者荣耀有效赛事比赛玩法 -->
+		<task:scheduled ref="esportsDataService" method="syncCompetition" cron="*/3 * * * * ?" />
+		<!-- 更新王者荣耀注单状态 -->
+		<task:scheduled ref="esportsDataService" method="updateOrderToBeSettled" cron="*/30 * * * * ?" />
+		<!-- 结算王者荣耀注单 -->
+		<task:scheduled ref="esportsDataService" method="settingResult" cron="10,40 * * * * ?" />
+		<!--电子竞技日报  历史注单迁移-->
+		<task:scheduled ref="esportsOrderDayReportService" method="orderDayReport" cron="0 0/15 * * * ?" />
+
+	</task:scheduled-tasks>
+
+</beans>

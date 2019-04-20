@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    					http://www.springframework.org/schema/task
+    					http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+	<context:component-scan base-package="com.cz.gameplat" />
+	<task:annotation-driven />
+	<task:scheduler id="myScheduler" pool-size="50" />
+	<task:scheduled-tasks scheduler="myScheduler">
+
+		<!--<task:scheduled ref="jbTaskJob" method="getBet" cron="30 */1 * * * ?" />-->
+		<!--<task:scheduled ref="cq9TaskJob" method="getBet" cron="0 1,6,11,16,21,26,31,36,41,46,51,56 * * * ?" />-->
+		<!--<task:scheduled ref="mgTaskJob" method="getBet" cron="0 2,7,12,17,22,27,32,37,42,47,52,57 * * * ?" />-->
+		<!--<task:scheduled ref="agTaskJob" method="getBet" cron="0 4,9,14,19,24,29,34,39,44,49,54,59 * * * ?" />-->
+		<!--<task:scheduled ref="bbinTaskJob" method="getBetFromOnline" cron="10 1,6,11,16,21,26,31,36,41,46,51,56 * * * ?" />-->
+		<!--<task:scheduled ref="bbinTaskJob" method="getNotSettleFromOnline" cron="0 3,9,13,18,23,28,33,38,43,48,53,58 * * * ?" />-->
+		<task:scheduled ref="dsTaskJob" method="getBet" cron="44 */1 * * * ?" />
+		<!--<task:scheduled ref="ogTaskJob" method="getBet" cron="0 3,8,13,18,23,28,33,38,43,48,53,58 * * * ?" />-->
+		<!--<task:scheduled ref="ptTaskJob" method="getBet" cron="0 */1 * * * ?" />-->
+		<!--<task:scheduled ref="lmgTaskJob" method="getBet" cron="15 */5 * * * ?" />-->
+		<!--<task:scheduled ref="dgTaskJob" method="getBet" cron="30 2,7,12,17,22,27,32,37,42,47,52,57 * * * ?" />-->
+		<!--<task:scheduled ref="m8TaskJob" method="getBet" cron="30 4,9,14,19,24,29,34,39,44,49,54,59 * * * ?" />-->
+		<!--<task:scheduled ref="kyTaskJob" method="getBet" cron="45 3,8,13,18,23,28,33,38,43,48,53,58 * * * ?" />-->
+		<!--<task:scheduled ref="hbTaskJob" method="getBet" cron="0 */5 * * * ?" />-->
+		<!--<task:scheduled ref="sbTaskJob" method="getBet" cron="45 1,6,11,16,21,26,31,36,41,46,51,56 * * * ?" />-->
+		<!--<task:scheduled ref="jdbTaskJob" method="getBet" cron="30 3,8,13,18,23,28,33,38,43,48,53,58 * * * ?" />-->
+		<!--<task:scheduled ref="jdbTaskJob" method="getFtpBetData" cron="30 15,30,45,00 * * * ?" />-->
+		<!--<task:scheduled ref="jdbTaskJob" method="deleteJdbDir" cron="0 30 02 ? * *" />-->
+		<!--<task:scheduled ref="qlyTaskJob" method="getBet" cron="*/30 * * * * ?" />-->
+		<!--<task:scheduled ref="pgTaskJob" method="getBet" cron="45 0/3 * * * ?" />-->
+		<!--<task:scheduled ref="pt2TaskJob" method="getBet" cron="30 */5 * * * ?" />-->
+		<!--<task:scheduled ref="ggTaskJob" method="getBet" cron="*/30 * * * * ?" />-->
+		<!-- 清理充值提现表每天14点18分执行 -->
+    	<task:scheduled ref="liveUserDayReportTaskJob" method="saveDayReport" cron="0 18 14 ? * *"/>
+    	<task:scheduled ref="liveUserDayReportTaskJob" method="saveRebateData" cron="0 15 14 ? * *"/>
+		<!-- 清理真人数据每月18号4：30分执行 -->
+		<task:scheduled ref="liveUserDayReportTaskJob" method="clearLiveData" cron="0 35 4 18 * ?"/>
+		<!-- 清理真人数据每月18号4：30分执行删除半年前数据 -->
+		<task:scheduled ref="liveUserDayReportTaskJob" method="clearLiveReportData" cron="0 30 4 18 * ?"/>
+	</task:scheduled-tasks>
+
+</beans>

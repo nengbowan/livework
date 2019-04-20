@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="framework-0.0.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/framework-0.0.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

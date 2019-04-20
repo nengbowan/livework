@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    					http://www.springframework.org/schema/task
+    					http://www.springframework.org/schema/task/spring-task-4.0.xsd"
+	default-lazy-init="true">
+
+    <bean id="taskFtRbRe" class="com.cz.gameplat.sports.sync.TaskFtRbRe"/>
+    <bean id="taskBkRbRe" class="com.cz.gameplat.sports.sync.TaskBkRbRe"/>
+    <bean id="taskFtR" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtR"/>
+    </bean>
+    <bean id="taskFtP3" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtP3"/>
+    </bean>
+    <bean id="taskFtT" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtT"/>
+    </bean>
+    <bean id="taskFtPd" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtPD"/>
+    </bean>
+    <bean id="taskFtHpd" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtHpd"/>
+    </bean>
+    <bean id="taskFtF" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtF"/>
+    </bean>
+    <bean id="taskBkR" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.BtAll"/>
+    </bean>
+    <bean id="taskBkP3" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.BtP3"/>
+    </bean>
+    <bean id="taskFtFuR" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtFuR"/>
+    </bean>
+    <bean id="taskFtFuPd" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtFuPd"/>
+    </bean>
+    <bean id="taskFtFuHpd" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtFuHpd"/>
+    </bean>
+    <bean id="taskFtFuT" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtFuT"/>
+    </bean>
+    <bean id="taskFtFuF" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtFuF"/>
+    </bean>
+    <bean id="taskFtFuP3" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.FtFuP3"/>
+    </bean>
+    <bean id="taskBkFuR" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.BtFuAll"/>
+    </bean>
+    <bean id="taskBKFuP3" class="com.cz.gameplat.sports.sync.Task">
+        <constructor-arg type="java.lang.Class" value="com.cz.gameplat.sports.entity.BtFuP3"/>
+    </bean>
+
+    <task:scheduler id="mySportScheduler" pool-size="50" />
+	<task:scheduled-tasks scheduler="mySportScheduler">
+
+		<!-- 赛事数据采集 -->
+		<task:scheduled ref="sportManager" method="crawlerMessage" cron="*/60 0/30 * * * ?" />
+		<task:scheduled ref="taskFtR" method="startRun" cron="4 * * * * ?" />
+		<task:scheduled ref="taskFtP3" method="startRun" cron="8 * * * * ?" />
+		<task:scheduled ref="taskFtT" method="startRun" cron="14 * * * * ?" />
+		<task:scheduled ref="taskFtPd" method="startRun" cron="28 * * * * ?" />
+		<task:scheduled ref="taskFtHpd" method="startRun" cron="24 * * * * ?" />
+		<task:scheduled ref="taskFtF" method="startRun" cron="38 * * * * ?" />
+		<task:scheduled ref="taskBkR" method="startRun" cron="34 * * * * ?" />
+		<task:scheduled ref="taskBkP3" method="startRun" cron="38 * * * * ?" />
+		<task:scheduled ref="taskFtFuR" method="startRun" cron="0 */5 * * * ?" />
+		<task:scheduled ref="taskFtFuPd" method="startRun" cron="5 */5 * * * ?" />
+		<task:scheduled ref="taskFtFuHpd" method="startRun" cron="15 */5 * * * ?" />
+		<task:scheduled ref="taskFtFuT" method="startRun" cron="20 */5 * * * ?" />
+		<task:scheduled ref="taskFtFuF" method="startRun" cron="25 */5 * * * ?" />
+		<task:scheduled ref="taskFtFuP3" method="startRun" cron="30 */5 * * * ?" />
+		<task:scheduled ref="taskBkFuR" method="startRun" cron="35 */5 * * * ?" />
+		<task:scheduled ref="taskBKFuP3" method="startRun" cron="40 */5 * * * ?" />
+
+		<!--滚球-->
+		<task:scheduled ref="taskFtRbRe" method="startRun" cron="*/3 * * * * ?" />
+		<task:scheduled ref="taskBkRbRe" method="startRun" cron="*/3 * * * * ?" />
+
+		<!--&lt;!&ndash;滚球&ndash;&gt;-->
+		<!--<task:scheduled ref="sportManagerOptimization" method="matchTail" cron="*/3 * * * * ?" />-->
+		<!--&lt;!&ndash;今日&ndash;&gt;-->
+		<!--<task:scheduled ref="sportManagerOptimization" method="matchT" cron="*/60 * * * * ?" />-->
+		<!--&lt;!&ndash;早盘&ndash;&gt;-->
+		<!--<task:scheduled ref="sportManagerOptimization" method="matchU" cron="*/60 */3 * * * ?" />-->
+		<!--赛果-->
+		<task:scheduled ref="sportManager" method="fetchResult" cron="*/60 * * * * ?" />
+		<task:scheduled ref="sportManager" method="preSettle" cron="0,30 * * * * ?" />
+		<task:scheduled ref="sportManager" method="runConfirmPreSettle" cron="5,35 * * * * ?" />
+		<task:scheduled ref="sportManager" method="settle" cron="10,40 * * * * ?" />
+
+		<!--体育日报表，15分钟跑一次-->
+		<task:scheduled ref="sportManager" method="orderDayReport" cron="0 0/15 * * * ?" />
+
+        <!--验证报表数据是否有变化-->
+        <task:scheduled ref="sportManager" method="saveLastOrderDayReport" cron="0 8,23,38,53 * * * ?" />
+		
+		<!--每天5点半迁移7天前已结算的体育注单到历史注单表-->
+		<task:scheduled ref="sportManager" method="moveHistorySettleOrder" cron="0 30 5 * * ?" />
+		
+		<!--每月18号凌晨4点半删除上个月前的历史注单数据，保留48天注单数据-->
+		<task:scheduled ref="sportManager" method="clearHistoryOrderLogs" cron="0 30 4 18 * ?" />
+
+		<!-- 每5分钟从缓存保存投注控制数据到数据库 -->
+		<task:scheduled ref="sportManager" method="saveBetCtrlFromCache" cron="*/60 0/5 * * * ?" />
+
+        <!-- 每天凌晨7点删除足球48天之前的赛果 -->
+        <task:scheduled ref="sportManager" method="removeFtResult" cron="0 0 7 * * ?" />
+        <!-- 每天凌晨7点05分删除篮球48天之前的赛果 -->
+        <task:scheduled ref="sportManager" method="removeBkResult" cron="0 5 7 * * ?" />
+
+		<!--负载均衡-->
+		<task:scheduled ref="sportManager" method="checkNextRemoteIp" cron="*/50 * * * * ?" />
+
+        <!--每天1点,13点更新体育联赛数据-->
+        <task:scheduled ref="sportLeagueService" method="saveSportLeague" cron="0 0 1,13 * * ?" />
+	</task:scheduled-tasks>
+
+</beans>
