@@ -159,8 +159,8 @@
     </dependency>
 
     <dependency>
-        <groupId>anyone</groupId>
-        <artifactId>anyone</artifactId>
+        <groupId>anyon11</groupId>
+        <artifactId>anyone11</artifactId>
         <version>1</version>
         <scope>system</scope>
         <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/framework-0.0.10.jar</systemPath>
@@ -182,8 +182,8 @@
     </dependency>
 
     <dependency>
-        <groupId>anyone</groupId>
-        <artifactId>anyone</artifactId>
+        <groupId>anyone2</groupId>
+        <artifactId>anyone2</artifactId>
         <version>2</version>
         <scope>system</scope>
         <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/gameplat-resources-0.0.1-SNAPSHOT.jar</systemPath>
@@ -409,11 +409,11 @@
         <version>4.2.1.RELEASE</version>
     </dependency>
 
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.2.1.RELEASE</version>
-    </dependency>
+    <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-context</artifactId>-->
+        <!--<version>4.2.1.RELEASE</version>-->
+    <!--</dependency>-->
 
     <dependency>
         <groupId>org.springframework</groupId>
@@ -552,11 +552,11 @@
         <artifactId>thumbnailator</artifactId>
         <version>0.4.8</version>
     </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.2.1.RELEASE</version>
-    </dependency>
+    <!--<dependency>-->
+        <!--<groupId>org.springframework</groupId>-->
+        <!--<artifactId>spring-context</artifactId>-->
+        <!--<version>4.2.1.RELEASE</version>-->
+    <!--</dependency>-->
 
 
 </dependencies>
