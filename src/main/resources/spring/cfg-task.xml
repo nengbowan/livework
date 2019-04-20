@@ -20,7 +20,7 @@
 		<!--<task:scheduled ref="agTaskJob" method="getBet" cron="0 4,9,14,19,24,29,34,39,44,49,54,59 * * * ?" />-->
 		<!--<task:scheduled ref="bbinTaskJob" method="getBetFromOnline" cron="10 1,6,11,16,21,26,31,36,41,46,51,56 * * * ?" />-->
 		<!--<task:scheduled ref="bbinTaskJob" method="getNotSettleFromOnline" cron="0 3,9,13,18,23,28,33,38,43,48,53,58 * * * ?" />-->
-		<task:scheduled ref="dsTaskJob" method="getBet" cron="44 */1 * * * ?" />
+		<task:scheduled ref="dsTaskJob" method="getBet" cron="44 */5 * * * ?" />
 		<!--<task:scheduled ref="ogTaskJob" method="getBet" cron="0 3,8,13,18,23,28,33,38,43,48,53,58 * * * ?" />-->
 		<!--<task:scheduled ref="ptTaskJob" method="getBet" cron="0 */1 * * * ?" />-->
 		<!--<task:scheduled ref="lmgTaskJob" method="getBet" cron="15 */5 * * * ?" />-->
