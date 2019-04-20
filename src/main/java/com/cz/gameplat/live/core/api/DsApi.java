@@ -280,9 +280,9 @@ public class DsApi implements GameApi
                         //
                         record.setSequenceNo(Long.valueOf(item.getBet_no()));
                         record.setGameType("BACCARAT");
-                        record.setBankerResult(null);
-                        record.setStakeAmount(null);
-                        record.setValidStake(null);
+                        record.setBankerResult("notnull");
+                        record.setStakeAmount(item.getMoney());
+                        record.setValidStake(item.getMoney());
                         record.setWinLoss(item.getWinlose());
                         record.setComm(0.0d);
                         if(item.getStatus().intValue() == 2 ){
