@@ -130,6 +130,19 @@ public class AgBetRecordService extends LiveCheckService
                             agBetRecord.setGameKind("AGIN");
                             agBetRecord.setAgentName(agentusername);
                             agBetRecord.setAddTime(new Date());
+
+//                            agBetRecord.setRebateTime();
+//                            agBetRecord.setGmtBetTime();
+//                            agBetRecord.setAmesTime(new Date());
+//                            agBetRecord.setStatTime();
+
+                            agBetRecord.setBetTime(item.getBettime());
+                            final Date amesTime = DateUtil.getUSToAMES(item.getBettime());
+                            agBetRecord.setAmesTime(sdf.parse(DateUtil.dateToYMDHMS(amesTime)));
+                            agBetRecord.setRebateTime(DateUtil.dateToYMD(amesTime));
+                            agBetRecord.setStatTime(this.getStatTime(item.getBettime()));
+                            agBetRecord.setGmtBetTime(new Date());
+                            agBetRecord.setBetContent(item.getBet_items_name());
                             if(item.getStatus().intValue() == 2 ){
                                 agBetRecord.setSettle(1);
                             }else{
@@ -195,6 +208,14 @@ public class AgBetRecordService extends LiveCheckService
                         agBetRecord.setGameKind("AGIN");
                         agBetRecord.setAgentName(agentusername);
                         agBetRecord.setAddTime(new Date());
+
+                        agBetRecord.setBetTime(item.getBettime());
+                        final Date amesTime = DateUtil.getUSToAMES(item.getBettime());
+                        agBetRecord.setAmesTime(sdf.parse(DateUtil.dateToYMDHMS(amesTime)));
+                        agBetRecord.setRebateTime(DateUtil.dateToYMD(amesTime));
+                        agBetRecord.setStatTime(this.getStatTime(item.getBettime()));
+                        agBetRecord.setGmtBetTime(new Date());
+                        agBetRecord.setBetContent(item.getBet_items_name());
                         if(item.getStatus().intValue() == 2 ){
                             agBetRecord.setSettle(1);
                         }else{
@@ -263,5 +284,14 @@ public class AgBetRecordService extends LiveCheckService
 
     static {
         logger = LoggerFactory.getLogger((Class)AgBetRecordService.class);
+    }
+
+    private String getStatTime(final Date betTime) {
+        final String statTime = DateUtil.dateToYMD(betTime);
+        final Date startTime = DateUtil.strToDate(statTime + " 07:59:59");
+        if (DateUtil.dateCompareByYmdhms(betTime, startTime)) {
+            return DateUtil.dateToYMD(DateUtil.addDate(betTime, -1));
+        }
+        return statTime;
     }
 }

@@ -10,7 +10,7 @@ public class SbRecordReportItem {
 
     private String bet_items_name;
 
-    private Integer table_no;
+    private String table_no;
 
     private Integer boot_no;
 
@@ -64,11 +64,11 @@ public class SbRecordReportItem {
         this.bet_items_name = bet_items_name;
     }
 
-    public Integer getTable_no() {
+    public String getTable_no() {
         return table_no;
     }
 
-    public void setTable_no(Integer table_no) {
+    public void setTable_no(String table_no) {
         this.table_no = table_no;
     }
 
